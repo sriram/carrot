@@ -8,14 +8,14 @@ module Carrot::AMQP
       @name   = name
       @carrot = carrot
       server.send_frame(
-        Protocol::Queue::Declare.new({ :queue => name, :nowait => true }.merge(opts))
+              Protocol::Queue::Declare.new({ :queue => name, :nowait => true }.merge(opts))
       )
     end
 
     def pop(opts = {})
       self.delivery_tag = nil
       server.send_frame(
-        Protocol::Basic::Get.new({ :queue => name, :consumer_tag => name, :no_ack => !opts.delete(:ack), :nowait => true }.merge(opts))
+              Protocol::Basic::Get.new({ :queue => name, :consumer_tag => name, :no_ack => !opts.delete(:ack), :nowait => true }.merge(opts))
       )
       method = server.next_method
       return unless method.kind_of?(Protocol::Basic::GetOk)
@@ -34,7 +34,7 @@ module Carrot::AMQP
 
     def ack
       server.send_frame(
-        Protocol::Basic::Ack.new(:delivery_tag => delivery_tag)
+              Protocol::Basic::Ack.new(:delivery_tag => delivery_tag)
       )
     end
 
@@ -49,10 +49,10 @@ module Carrot::AMQP
     def consumer_count
       status.last
     end
-    
+
     def status(opts = {}, &blk)
       server.send_frame(
-        Protocol::Queue::Declare.new({ :queue => name, :passive => true }.merge(opts))
+              Protocol::Queue::Declare.new({ :queue => name, :passive => true }.merge(opts))
       )
       method = server.next_method
       return [nil, nil] if method.kind_of?(Protocol::Connection::Close)
@@ -64,7 +64,7 @@ module Carrot::AMQP
       exchange           = exchange.respond_to?(:name) ? exchange.name : exchange
       bindings[exchange] = opts
       server.send_frame(
-        Protocol::Queue::Bind.new({ :queue => name, :exchange => exchange, :routing_key => opts.delete(:key), :nowait => true }.merge(opts))
+              Protocol::Queue::Bind.new({ :queue => name, :exchange => exchange, :routing_key => opts.delete(:key), :nowait => true }.merge(opts))
       )
     end
 
@@ -73,22 +73,22 @@ module Carrot::AMQP
       bindings.delete(exchange)
 
       server.send_frame(
-        Protocol::Queue::Unbind.new({
-          :queue => name, :exchange => exchange, :routing_key => opts.delete(:key), :nowait => true }.merge(opts)
-        )
+              Protocol::Queue::Unbind.new({
+                      :queue => name, :exchange => exchange, :routing_key => opts.delete(:key), :nowait => true }.merge(opts)
+              )
       )
     end
 
     def delete(opts = {})
       server.send_frame(
-        Protocol::Queue::Delete.new({ :queue => name, :nowait => true }.merge(opts))
+              Protocol::Queue::Delete.new({ :queue => name, :nowait => true }.merge(opts))
       )
       carrot.queues.delete(name)
     end
 
     def purge(opts = {})
       server.send_frame(
-        Protocol::Queue::Purge.new({ :queue => name, :nowait => true }.merge(opts))
+              Protocol::Queue::Purge.new({ :queue => name, :nowait => true }.merge(opts))
       )
     end
 
@@ -96,7 +96,43 @@ module Carrot::AMQP
       carrot.server
     end
 
-  private
+    ##
+    # Is a wrapper around publish to send persistent messages.
+
+    def send_message(data,opts={})
+      opts.merge!(:persistent => true)
+      exchange.publish(data,opts)
+    end
+
+    def encrypt_message(message, password)
+      encrypted_message = message.encrypt(:symmetric, :password => password)
+      encrypted_message
+    end
+
+    def decrypt_message(message, password)
+      decrypted_message = message.decrypt(:symmetric, :password => password)
+      decrypted_message
+    end
+
+    ##
+    # Is a wrapper around publish to send persistent and encrypted messages using symmetric key.
+
+    def encrypt_and_send_message(message, password, opts={})
+      opts.merge!(:persistent => true)
+      encrypted_message = encrypt_message(message, password)
+      exchange.publish(encrypted_message,opts)
+    end
+
+    ##
+    # This method will receive and decrypt messages using symmetric key.
+
+    def receive_and_decrypt_message(password, opts={})
+      msg  = pop(opts)
+      decrypted_message = decrypt_message(msg, password)
+      decrypted_message
+    end
+
+    private
     def exchange
       @exchange ||= Exchange.new(carrot, :direct, '', :key => name)
     end
