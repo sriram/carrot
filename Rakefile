@@ -6,12 +6,14 @@ require 'rcov/rcovtask'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |s|
-    s.name = "carrot"
-    s.email = "amos@geni.com"
-    s.homepage = "http://github.com/famoseagle/carrot"
-    s.description = "A synchronous version of the ruby amqp client"
-    s.summary = "A synchronous version of the ruby amqp client"
-    s.authors = ["Amos Elliston"]
+    s.name = "secure_carrot"
+    s.email = "sriram.varahan@gmail.com"
+    s.homepage = "http://github.com/sriram/carrot"
+    s.description = "A fork of carrot with added features for encrypting and decrypting messages."
+    s.summary = "A synchronous version of the ruby amqp client with added security features"
+    s.authors = ["Sriram Varahan"]
+    s.add_runtime_dependency 'encrypted_strings'
+    s.files = FileList["[A-Z]*", "{bin,generators,lib,test}/**/*"]
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError
@@ -26,7 +28,7 @@ end
 
 Rake::RDocTask.new do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title    = 'carrot'
+  rdoc.title    = 'secure_carrot'
   rdoc.options << '--line-numbers' << '--inline-source'
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')

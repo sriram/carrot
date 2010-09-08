@@ -2,7 +2,7 @@ require 'rubygems'
 require 'test/unit'
 #require 'shoulda'
 require 'mocha'
-require File.dirname(__FILE__) + '/../lib/carrot'
+require File.dirname(__FILE__) + '/../lib/secure_carrot'
 
 class << Test::Unit::TestCase
   def test(name, &block)

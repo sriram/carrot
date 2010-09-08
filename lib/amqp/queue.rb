@@ -117,18 +117,18 @@ module Carrot::AMQP
     ##
     # Is a wrapper around publish to send persistent and encrypted messages using symmetric key.
 
-    def encrypt_and_send_message(message, password, opts={})
+    def encrypt_and_send_message(opts={})
       opts.merge!(:persistent => true)
-      encrypted_message = encrypt_message(message, password)
+      encrypted_message = encrypt_message(opts[:message], opts[:password])
       exchange.publish(encrypted_message,opts)
     end
 
     ##
     # This method will receive and decrypt messages using symmetric key.
 
-    def receive_and_decrypt_message(password, opts={})
+    def receive_and_decrypt_message(opts={})
       msg  = pop(opts)
-      decrypted_message = decrypt_message(msg, password)
+      decrypted_message = decrypt_message(msg, opts[:password])
       decrypted_message
     end
 
