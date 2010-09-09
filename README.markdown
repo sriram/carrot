@@ -13,7 +13,7 @@ There is currently no way to prevent buffering using eventmachine. Support for p
 
 ## Example
     
-    require 'carrot'
+    require 'secure_carrot'
 
     q = Carrot.queue('name')
     10.times do |num|
@@ -36,9 +36,11 @@ and decrypting the message.
 
     puts "Encrypt and send a message"
     q.send_message('Hello Carrot', :password => 'secure')
+    #=> "qrbSyJHx6JhBQtXKsWvm/A==\n"
 
     puts "Receiving and decrypting message. If you don't specify the password you will read an encrypted message."
     q.receive_message(:password => 'secure')
+    #=> "Hello Carrot"
     
 # LICENSE
 
