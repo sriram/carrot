@@ -27,7 +27,7 @@ There is currently no way to prevent buffering using eventmachine. Support for p
       puts "Popping: #{msg}"
       q.ack
     end
-    Carrot.stop
+
 
 ## Encrypting and Decrypting messages
 
@@ -41,6 +41,8 @@ and decrypting the message.
     puts "Receiving and decrypting message. If you don't specify the password you will read an encrypted message."
     q.receive_message(:password => 'secure')
     #=> "Hello Carrot"
+
+    Carrot.stop
     
 # LICENSE
 

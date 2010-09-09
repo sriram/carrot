@@ -56,7 +56,7 @@
     </tr>
     <tr class="top-aligned-row">
       <td><strong>Last Update:</strong></td>
-      <td>Wed Sep 08 11:01:54 +0530 2010</td>
+      <td>Thu Sep 09 11:43:45 +0530 2010</td>
     </tr>
     </table>
   </div>
@@ -99,7 +99,7 @@ for prefetch is still unreliable.
 ## Example
 </p>
 <pre>
-    require 'carrot'
+    require 'secure_carrot'
 
     q = Carrot.queue('name')
     10.times do |num|
@@ -114,6 +114,22 @@ for prefetch is still unreliable.
       q.ack
     end
     Carrot.stop
+</pre>
+<p>
+## Encrypting and Decrypting messages
+</p>
+<p>
+Symmetric encryption is used here which means the same password is used for
+encrypting and decrypting the message.
+</p>
+<pre>
+    puts &quot;Encrypt and send a message&quot;
+    q.send_message('Hello Carrot', :password =&gt; 'secure')
+    #=&gt; &quot;qrbSyJHx6JhBQtXKsWvm/A==\n&quot;
+
+    puts &quot;Receiving and decrypting message. If you don't specify the password you will read an encrypted message.&quot;
+    q.receive_message(:password =&gt; 'secure')
+    #=&gt; &quot;Hello Carrot&quot;
 </pre>
 <p>
 # LICENSE

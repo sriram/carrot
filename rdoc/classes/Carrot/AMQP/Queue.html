@@ -519,7 +519,7 @@ This message will decrypt the message if a password is passed. Else it will
 114:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">receive_message</span>(<span class="ruby-identifier">opts</span>={})
 115:       <span class="ruby-identifier">msg</span>      = <span class="ruby-identifier">pop</span>(<span class="ruby-identifier">opts</span>)
 116:       <span class="ruby-identifier">password</span> = <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:password</span>]
-117:       <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">msg</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">password</span>
+117:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">msg</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">password</span>
 118:         <span class="ruby-identifier">decrypted_message</span> = <span class="ruby-identifier">decrypt_message</span>(<span class="ruby-identifier">msg</span>, <span class="ruby-identifier">password</span>)
 119:         <span class="ruby-identifier">decrypted_message</span>
 120:       <span class="ruby-keyword kw">end</span>
