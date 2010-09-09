@@ -101,7 +101,24 @@ module Carrot::AMQP
 
     def send_message(data,opts={})
       opts.merge!(:persistent => true)
+      # Encrypt the message using the password supplied
+      data = encrypt_message(data, opts[:password]) if opts[:password]
       exchange.publish(data,opts)
+    end
+
+
+    ##
+    # This message will decrypt the message if a password is passed.
+    # Else it will pop the message as it is.
+
+    def receive_message(opts={})
+      msg      = pop(opts)
+      password = opts[:password]
+      if msg && password
+        decrypted_message = decrypt_message(msg, password)
+        decrypted_message
+      end
+      decrypted_message || msg
     end
 
     def encrypt_message(message, password)
@@ -128,8 +145,11 @@ module Carrot::AMQP
 
     def receive_and_decrypt_message(opts={})
       msg  = pop(opts)
-      decrypted_message = decrypt_message(msg, opts[:password])
-      decrypted_message
+      unless msg.nil?
+        decrypted_message = decrypt_message(msg, opts[:password])
+        decrypted_message
+      end
+      decrypted_message || msg
     end
 
     private

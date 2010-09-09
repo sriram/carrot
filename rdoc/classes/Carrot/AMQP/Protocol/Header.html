@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Carrot::AMQP::Protocol::Header</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Carrot::AMQP::Protocol::Header</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../../files/lib/amqp/protocol_rb.html">
+                lib/amqp/protocol.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+Contains a properties hash that holds some potentially interesting
+information.
+</p>
+<ul>
+<li>:delivery_mode
+
+</li>
+</ul>
+<p>
+1 equals transient. 2 equals persistent. Unconsumed persistent messages
+will survive a server restart when they are stored in a durable queue.
+</p>
+<ul>
+<li>:redelivered
+
+</li>
+</ul>
+<p>
+True or False
+</p>
+<ul>
+<li>:routing_key
+
+</li>
+</ul>
+<p>
+The routing string used for matching this message to this queue.
+</p>
+<ul>
+<li>:priority
+
+</li>
+</ul>
+<p>
+An integer in the range of 0 to 9 inclusive.
+</p>
+<ul>
+<li>:content_type
+
+</li>
+</ul>
+<p>
+Always &quot;application/octet-stream&quot; (byte stream)
+</p>
+<ul>
+<li>:exchange
+
+</li>
+</ul>
+<p>
+The source exchange which published this message.
+</p>
+<ul>
+<li>:message_count
+
+</li>
+</ul>
+<p>
+The number of unconsumed messages contained in the queue.
+</p>
+<ul>
+<li>:delivery_tag
+
+</li>
+</ul>
+<p>
+A monotonically increasing integer. This number should not be trusted as a
+sequence number. There is no guarantee it won&#8216;t get reset.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000019">==</a>&nbsp;&nbsp;
+      <a href="#M000020">method_missing</a>&nbsp;&nbsp;
+      <a href="#M000015">new</a>&nbsp;&nbsp;
+      <a href="#M000016">to_binary</a>&nbsp;&nbsp;
+      <a href="#M000018">to_frame</a>&nbsp;&nbsp;
+      <a href="#M000017">to_s</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+    <div id="attribute-list">
+      <h3 class="section-bar">Attributes</h3>
+
+      <div class="name-list">
+        <table>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">klass</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">properties</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">size</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">weight</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        </table>
+      </div>
+    </div>
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000015" class="method-detail">
+        <a name="M000015"></a>
+
+        <div class="method-heading">
+          <a href="#M000015" class="method-signature">
+          <span class="method-name">new</span><span class="method-args">(*args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000015-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000015-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/amqp/protocol.rb, line 89</span>
+ 89:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span> <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>
+ 90:         <span class="ruby-identifier">opts</span> = <span class="ruby-identifier">args</span>.<span class="ruby-identifier">pop</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">args</span>.<span class="ruby-identifier">last</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Hash</span>
+ 91:         <span class="ruby-identifier">opts</span> <span class="ruby-operator">||=</span> {}
+ 92:         
+ 93:         <span class="ruby-identifier">first</span> = <span class="ruby-identifier">args</span>.<span class="ruby-identifier">shift</span>
+ 94:         
+ 95:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">first</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-operator">::</span><span class="ruby-constant">Class</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">first</span>.<span class="ruby-identifier">ancestors</span>.<span class="ruby-identifier">include?</span> <span class="ruby-constant">Protocol</span><span class="ruby-operator">::</span><span class="ruby-constant">Class</span>
+ 96:           <span class="ruby-ivar">@klass</span> = <span class="ruby-identifier">first</span>
+ 97:           <span class="ruby-ivar">@size</span> = <span class="ruby-identifier">args</span>.<span class="ruby-identifier">shift</span> <span class="ruby-operator">||</span> <span class="ruby-value">0</span>
+ 98:           <span class="ruby-ivar">@weight</span> = <span class="ruby-identifier">args</span>.<span class="ruby-identifier">shift</span> <span class="ruby-operator">||</span> <span class="ruby-value">0</span>
+ 99:           <span class="ruby-ivar">@properties</span> = <span class="ruby-identifier">opts</span>
+100: 
+101:         <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">first</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Buffer</span> <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">first</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">String</span>
+102:           <span class="ruby-identifier">buf</span> = <span class="ruby-identifier">first</span>
+103:           <span class="ruby-identifier">buf</span> = <span class="ruby-constant">Buffer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">buf</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">buf</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Buffer</span>
+104:           
+105:           <span class="ruby-ivar">@klass</span> = <span class="ruby-constant">Protocol</span>.<span class="ruby-identifier">classes</span>[<span class="ruby-identifier">buf</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">:short</span>)]
+106:           <span class="ruby-ivar">@weight</span> = <span class="ruby-identifier">buf</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">:short</span>)
+107:           <span class="ruby-ivar">@size</span> = <span class="ruby-identifier">buf</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">:longlong</span>)
+108: 
+109:           <span class="ruby-identifier">props</span> = <span class="ruby-identifier">buf</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">:properties</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">klass</span>.<span class="ruby-identifier">properties</span>.<span class="ruby-identifier">map</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">type</span>,<span class="ruby-identifier">_</span><span class="ruby-operator">|</span> <span class="ruby-identifier">type</span> })
+110:           <span class="ruby-ivar">@properties</span> = <span class="ruby-constant">Hash</span>[<span class="ruby-operator">*</span><span class="ruby-identifier">klass</span>.<span class="ruby-identifier">properties</span>.<span class="ruby-identifier">map</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">_</span>,<span class="ruby-identifier">name</span><span class="ruby-operator">|</span> <span class="ruby-identifier">name</span> }.<span class="ruby-identifier">zip</span>(<span class="ruby-identifier">props</span>).<span class="ruby-identifier">reject</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">k</span>,<span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">nil?</span> }.<span class="ruby-identifier">flatten</span>]
+111: 
+112:         <span class="ruby-keyword kw">else</span>
+113:           <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-value str">'Invalid argument'</span>
+114:         <span class="ruby-keyword kw">end</span>
+115:         
+116:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000019" class="method-detail">
+        <a name="M000019"></a>
+
+        <div class="method-heading">
+          <a href="#M000019" class="method-signature">
+          <span class="method-name">==</span><span class="method-args">(header)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000019-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000019-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/amqp/protocol.rb, line 139</span>
+139:       <span class="ruby-keyword kw">def</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">header</span>
+140:         [ <span class="ruby-identifier">:klass</span>, <span class="ruby-identifier">:size</span>, <span class="ruby-identifier">:weight</span>, <span class="ruby-identifier">:properties</span> ].<span class="ruby-identifier">inject</span>(<span class="ruby-keyword kw">true</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">eql</span>, <span class="ruby-identifier">field</span><span class="ruby-operator">|</span>
+141:           <span class="ruby-identifier">eql</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">__send__</span>(<span class="ruby-identifier">field</span>) <span class="ruby-operator">==</span> <span class="ruby-identifier">header</span>.<span class="ruby-identifier">__send__</span>(<span class="ruby-identifier">field</span>)
+142:         <span class="ruby-keyword kw">end</span>
+143:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000020" class="method-detail">
+        <a name="M000020"></a>
+
+        <div class="method-heading">
+          <a href="#M000020" class="method-signature">
+          <span class="method-name">method_missing</span><span class="method-args">(meth, *args, &amp;blk)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000020-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000020-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/amqp/protocol.rb, line 145</span>
+145:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">method_missing</span> <span class="ruby-identifier">meth</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">blk</span>
+146:         <span class="ruby-ivar">@properties</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-identifier">meth</span>) <span class="ruby-operator">||</span> <span class="ruby-ivar">@klass</span>.<span class="ruby-identifier">properties</span>.<span class="ruby-identifier">find</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">_</span>,<span class="ruby-identifier">name</span><span class="ruby-operator">|</span> <span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">meth</span> } <span class="ruby-operator">?</span> <span class="ruby-ivar">@properties</span>[<span class="ruby-identifier">meth</span>] <span class="ruby-operator">:</span>
+147:                                                                                        <span class="ruby-keyword kw">super</span>
+148:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000016" class="method-detail">
+        <a name="M000016"></a>
+
+        <div class="method-heading">
+          <a href="#M000016" class="method-signature">
+          <span class="method-name">to_binary</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000016-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000016-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/amqp/protocol.rb, line 119</span>
+119:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_binary</span>
+120:         <span class="ruby-identifier">buf</span> = <span class="ruby-constant">Buffer</span>.<span class="ruby-identifier">new</span>
+121:         <span class="ruby-identifier">buf</span>.<span class="ruby-identifier">write</span> <span class="ruby-identifier">:short</span>, <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">id</span>
+122:         <span class="ruby-identifier">buf</span>.<span class="ruby-identifier">write</span> <span class="ruby-identifier">:short</span>, <span class="ruby-identifier">weight</span> <span class="ruby-comment cmt"># XXX rabbitmq only supports weight == 0</span>
+123:         <span class="ruby-identifier">buf</span>.<span class="ruby-identifier">write</span> <span class="ruby-identifier">:longlong</span>, <span class="ruby-identifier">size</span>
+124:         <span class="ruby-identifier">buf</span>.<span class="ruby-identifier">write</span> <span class="ruby-identifier">:properties</span>, (<span class="ruby-identifier">klass</span>.<span class="ruby-identifier">properties</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">type</span>, <span class="ruby-identifier">name</span><span class="ruby-operator">|</span>
+125:                                  [ <span class="ruby-identifier">type</span>, <span class="ruby-identifier">properties</span>[<span class="ruby-identifier">name</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">properties</span>[<span class="ruby-identifier">name</span>.<span class="ruby-identifier">to_s</span>] ]
+126:                                <span class="ruby-keyword kw">end</span>)
+127:         <span class="ruby-identifier">buf</span>.<span class="ruby-identifier">rewind</span>
+128:         <span class="ruby-identifier">buf</span>
+129:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000018" class="method-detail">
+        <a name="M000018"></a>
+
+        <div class="method-heading">
+          <a href="#M000018" class="method-signature">
+          <span class="method-name">to_frame</span><span class="method-args">(channel = 0)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000018-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000018-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/amqp/protocol.rb, line 135</span>
+135:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_frame</span> <span class="ruby-identifier">channel</span> = <span class="ruby-value">0</span>
+136:         <span class="ruby-constant">Frame</span><span class="ruby-operator">::</span><span class="ruby-constant">Header</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>, <span class="ruby-identifier">channel</span>)
+137:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000017" class="method-detail">
+        <a name="M000017"></a>
+
+        <div class="method-heading">
+          <a href="#M000017" class="method-signature">
+          <span class="method-name">to_s</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000017-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000017-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/amqp/protocol.rb, line 131</span>
+131:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_s</span>
+132:         <span class="ruby-identifier">to_binary</span>.<span class="ruby-identifier">to_s</span>
+133:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>
